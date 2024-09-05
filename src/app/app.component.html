@@ -1,0 +1,44 @@
+<main class="main">
+    <div class="container">
+        @for ( tariff of data ; track tariff.id){
+        <div class="row tarif-container">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-1 tariff-id" > {{ tariff.id }}.  </div>
+            <div class="col-lg-2 col-md-3 col-sm-4  col-3 tariff-name">
+                <p>{{ tariff.name }}</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-3 col-3 tariff-speed">
+                <div class="row tariff-speed-row">
+                    <div class="speed-title d-none d-lg-block">Download</div>
+                    <div class="downaload-content">
+                        <button type="button" (click)="sortTariffsBy('downloadSpeed' )" class="download-btn">&darr;</button>
+                        <span class="speed-content">{{ tariff.downloadSpeed }} Mbit/s</span>
+                    </div>
+                    <div class="speed-title d-lg-block d-none">Upload</div>
+                    <div class="upload-content d-lg-block d-md-block d-none d-sm-none">
+                        <button type="button" (click)="sortTariffsBy('uploadSpeed')" class="upload-btn">&uarr; </button>
+                        <span class="speed-content">{{ tariff.uploadSpeed }} Mbit/s</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 d-none d-lg-block d-md-none d-sm-none tariff-benefits">
+                @for ( benefits of tariff.tarif_benefits ; track benefits){
+                <li>{{ benefits }}</li>
+                }
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-5 tariff-price">
+                <div class="row">
+                    <div class="col-md-12 col-9">
+                        <p class="tarrif-price-value">{{ tariff.price | addComma }} €</p>
+                    </div>
+                    <div class="col-md-12 col-3">
+                            <button type="button" (click)="sortTariffsBy('price')" class="btn to-tarrif-btn">
+                                <span class="tarrif-btn-content d-lg-block d-md-block d-none d-sm-none">To Tariff ></span>
+                                <span class="tarrif-icon d-sm-block d-md-none d-lg-none"> > </span> </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</main>
+<router-outlet />
